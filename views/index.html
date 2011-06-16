@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+<head>
+  <title>CASAA Legislative List Tool by slickplaid</title>
+</head>
+<body>
+<header>
+  <h1>CASAA Legislative List Tool by slickplaid</h1>
+</header>
+
+<div id="main" role="main">
+  <div class="step1">
+    <h2>Step One</h2>
+    <p>Are you looking for <button>State</button> or <button>National</button> information?</p>
+  </div>
+  <div class="local-step2">
+    <h2>Step Two</h2>
+    <p>Which state?
+      <select>
+        <option value="AK" selected>AK - Alaska</option>
+        <option value="AZ">AZ - Arizona</option>
+        <option value="CA">CA - California</option>
+        <option value="CT">CT - Connecticut</option>
+        <option value="DC">DC - District of Columbia</option>
+        <option value="FL">FL - Florida</option>
+        <option value="IN">IN - Indiana</option>
+        <option value="LA">LA - Louisiana</option>
+        <option value="MD">MD - Maryland</option>
+        <option value="MI">MI - Michigan</option>
+        <option value="MN">MN - Minnesota</option>
+        <option value="MS">MS - Mississippi</option>
+        <option value="NC">NC - North Carolina</option>
+        <option value="NJ">NJ - New Jersey</option>
+        <option value="NV">NV - Nevada</option>
+        <option value="OH">OH - Ohio</option>
+        <option value="PA">PA - Pennsylvania</option>
+        <option value="SD">SD - South Dakota</option>
+        <option value="TX">TX - Texas</option>
+        <option value="UT">UT - Utah</option>
+        <option value="VA">VA - Virginia</option>
+        <option value="VT">VT - Vermont</option>
+        <option value="WA">WA - Washington</option>
+        <option value="WI">WI - Wisconsin</option>
+      </select>
+    </p>
+    <p class="note">Is your state not listed? Take a look at <a href="http://openstates.sunlightlabs.com/status/detailed/">the available states</a> to see if we have data for that state or not. If so, shoot me an email.</p>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; <a href="http://labs.slickplaid.net/">slickplaid labs</a> 2011, Data provided by <a href="http://sunlightlabs.com">sunlight labs</a>.</p>
+</footer>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<script>!window.jQuery && document.write(unescape('%3Cscript src="js/jquery-1.5.2.min.js"%3E%3C/script%3E'))</script>
+<script>
+
+var key = 'e330d0dde1d84e8285f49c5b79f6aa53'
+,url = {
+  national: 'http://services.sunlightlabs.com/api/'
+  ,local: 'http://openstates.sunlightlabs.com/api/v1/'
+}
+,api = {
+  national: {
+    legislators: {
+      Get: {}
+      ,getList: {}
+      ,search: {}
+      ,allForZip: {}
+      ,allForLatLong: {}
+    }
+    ,district: {
+      getDistrictsFromZip: {}
+      ,getZipsFromDistrict: {}
+      ,getDistrictFromLatLong: {}
+    }
+    ,committee: {
+      getList: function(chamber, cb){
+        
+      }
+      ,Get: {}
+      ,allForLegislator: {}
+    }    
+  }
+  ,local: {
+    metadata: function(state,cb){
+      $.getJSON(url.local+'metadata/'+state+'/?callback=?', { apikey: key }, function(d){ cb(d); });
+    }
+    ,bill: {
+      search: function(opt,cb){
+        opt.apikey = opt.apikey || key;
+        $.getJSON(url.local+'bills/?callback=?', opt, function(d){ cb(d); }); 
+      }
+      ,lookup: function(opt,cb){
+        // needs state, session, chamber, bill-id to work
+        opt.apikey = opt.apikey || key;
+        opt.state = opt.state || '';
+        opt.session = opt.session || '';
+        opt.chamber = opt.chamber || '';
+        opt.bill_id = opt.bill_id || '';
+        $.getJSON(url.local+'bills/?callback=?', opt, function(d){ cb(d); }); 
+      }
+    }
+    ,legislator: {
+      search: function(opt,cb){
+        
+        opt.apikey = opt.apikey || key;
+        $.getJSON(url.local+'legislators/?callback=?', opt, function(d){ cb(d); }); 
+      }
+      ,lookup: function(opt,cb){
+        // needs leg_id
+        opt.leg_id = opt.leg_id || '';
+        opt.apikey = opt.apikey || key;
+        $.getJSON(url.local+'legislators/'+opt.leg_id+'?callback=?', opt, function(d){ cb(d); }); 
+      }
+      ,geosearch: function(opt,cb){
+        // needs lat and long
+        opt.lat = opt.lat || '';
+        opt.long = opt.long || '';
+        opt.apikey = opt.apikey || key;
+        $.getJSON(url.local+'legislators/geo/?callback=?', opt, function(d){ cb(d); }); 
+      }
+    }
+    ,committee: {
+      search: function(opt,cb){
+        // optional: committee, subcommittee, chamber, state
+        opt.apikey = opt.apikey || key;
+        $.getJSON(url.local+'committees/?callback=?', opt, function(d){ cb(d); }); 
+      }
+      ,lookup: function(opt,cb){
+        // requires committee_id
+        opt.committee_id = opt.committee_id || '';
+        opt.apikey = opt.apikey || key;
+        $.getJSON(url.local+'committees/'+opt.committee_id+'/?callback=?', opt, function(d){ cb(d); }); 
+        
+      }
+    }
+    ,event: {
+      search: function(state,cb){
+        
+      }
+      ,lookup: function(state,cb){
+        
+      }
+    }
+  }
+};
+$(function(){
+  
+});
+
+
+</script>
+</body>
+</html>
