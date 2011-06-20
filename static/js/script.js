@@ -104,11 +104,11 @@ var decodeGet = function(){
 ,search = function(){
   showThrobber();
   var search = $('.search').find('input').val(), state = $('.select-state').val();
-  if(search === '' && state !== ''){
+  if(search === '' && (state !== '' || state !== null)){
     return remote.sun('metadata/'+state+'/', {}, showState);
   } else if(search !== '' && state === ''){
     return remote.sun('bills/', {q: search}, showBills);
-  } else if(search !== '' && state !== ''){
+  } else if(search !== '' && (state !== '' || state !== null)){
     remote.sun('bills/', {q: search, state: state}, showBills);
     return remote.sun('metadata/'+state+'/', {}, showState);
   } else {
