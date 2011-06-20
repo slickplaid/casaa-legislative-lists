@@ -7,6 +7,7 @@
 <head>
   <meta charset="utf-8">
   <link rel="dns-prefetch" href="//ajax.googleapis.com">
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta http-equiv="imagetoolbar" content="false">
 
@@ -21,7 +22,7 @@
 
   <!-- CSS: implied media="all" -->
   <link rel="stylesheet" href="css/style.css">
-    
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Maven+Pro:bold|Droid+Serif:bold&v1">
   <!-- More ideas for your <head> here: h5bp.com/docs/#head-Tips -->
 
   <!-- All JavaScript at the bottom, except for Modernizr and Respond.
@@ -51,6 +52,15 @@
         </div>
       </div>
       <% } %>
+			<h1>CASAA Legislatr</h1>
+			<nav>
+				<p>This project is still in early beta. Please report any bugs and/or feedback to <a href="mailto:slickpla@slickplaid.net">slickplaid</a>. Thank you!</p>
+				
+				<div class="state-info"></div>
+				
+				
+				<p class="debug-show">Show/Hide Debug Information</p>
+			</nav>
     </header>
     <div id="main" role="main">
       <%- body %>
@@ -72,7 +82,12 @@
 
   <!-- scripts concatenated and minified via ant build script-->
 	<script src="/dnode.js"></script>
+	<script>if ( typeof window.JSON === 'undefined' ) { document.write('<script src="js/mylibs/json2.js"><\/script>'); }</script>
   <script src="js/plugins.js"></script>
+	<script src="js/mylibs/amplify.store.js"></script>
+	<script src="js/mylibs/history.adapter.jquery.js"></script>
+	<script src="js/mylibs/history.js"></script>
+	<script src="js/mylibs/history.html4.js"></script>
   <script src="js/script.js"></script>
   <!-- end scripts-->
 

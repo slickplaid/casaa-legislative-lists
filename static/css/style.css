@@ -142,7 +142,7 @@ body, select, input, textarea {
   /* #444 looks better than black: twitter.com/H_FJ/statuses/11800719859 */
   color: #444;
   /* Set your base font here, to apply evenly */
-  /* font-family: Georgia, serif;  */
+  font-family: Georgia, serif;
 }
 
 /* Headers (h1, h2, etc) have no default font-size or margin; define those yourself */
@@ -157,11 +157,41 @@ h1, h2, h3, h4, h5, h6 { font-weight: bold; }
 /**
  * Primary styles
  *
- * Author: 
+ * Author: slickplaid labs
  */
 
+#container { margin: 20px; position:relative; }
 
+header h1 { width: 155px; position: absolute; top:0; font-size: 2em; }
+header nav { padding: 3px 14px 0 4px; border-right: 1px solid #d3e1f9; position: absolute; top:80px; width: 173px; min-height: 0px; }
 
+#main { margin-left: 183px; padding: 0 8px; }
+.state-info, li.bill {margin: 2em 20px 2em 0; box-shadow: 2px 2px 12px #ddd; padding: 2em 20px; }
+.state-info { color: #aaa; }
+.state-info ol { list-style: none; margin: 0; }
+.debug-show { font: 0.8em "Droid Serif", georgia, arial, serif; }
+#question { }
+
+#answer { margin: 2em 10px 2em 0; border-left: 1px solid #d3e1f9; padding: 10px; }
+li.bill { cursor: pointer; list-style: none; background: #f0f8e9; }
+#answer h2 { font-size: 2em; font-family: "Maven Pro", arial, serif }
+#answer h3 { font: 1.2em "Droid Serif", arial, serif; }
+#answer p { padding: 1em 0 0 0; }
+#answer span.em { font-style: italic; }
+span.types, span.sponsor-type, span.pass, span.fail  {
+  padding: 0 0.2em; font-family: Consolas, monospace;
+  background: ghostWhite;
+  border: 1px solid #dedede;
+
+     -moz-border-radius: 4px; 
+  -webkit-border-radius: 4px; 
+          border-radius: 4px; 
+          
+          
+  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box; 
+}
+span.pass { background: #f0f8e9; }
+span.fail { background: #E2D0D0; }
 
 
 

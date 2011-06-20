@@ -85,16 +85,17 @@ dnode = DNode {
     params.apikey = apikey
     query = '?'+qs.stringify params
     options.path = '/api/v1/'+type+query
-    console.log 'Options:'.green, options
+    console.log 'Query: '.green, options.path.green
     http.get options, (res) ->
       data = ''
       res.on 'data', (chunk) ->
-        console.log 'Got chunk: '+chunk
+        console.log '> '+Buffer.byteLength(chunk+'', 'utf8')+' bytes'.green
         data = data+chunk
       res.on 'end', ->
-        console.log 'Data: '.green, data
+        console.log '< '.green, Buffer.byteLength(data, 'utf8')+' bytes'.yellow
         callback null, data
       res.on 'error', (error) ->
+        console.log 'Error: '+error.green
         callback error
 }
 
